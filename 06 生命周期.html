@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./react.js"></script>
+    <script src="./react-dom.js"></script>
+    <script src="./browser.min.js"></script>
+</head>
+<!-- 一个组件完整的生命周期包含实例化阶段、活动阶段、销毁阶段三个阶段。每个阶段又由相应的方法管理。
+
+过程中涉及三个主要的动作术语：
+
+    mounting:表示正在挂接虚拟DOM到真实DOM。
+    updating:表示正在被重新渲染。
+    unmounting:表示正在将虚拟DOM移除真实DOM。
+
+每个动作术语提供两个函数：
+
+        componentWillMount()
+        componentDidMount()
+        componentWillUpdate(object nextProps, object nextState)
+        componentDidUpdate(object prevProps, object prevState)
+        componentWillUnmount() -->
+<body>
+    <div id = "demo"></div>
+    <script type="text/babel">
+        var AddCount = React.createClass({
+            getInitialState:function () {
+                console.log('1...getInitialSate');
+                return {count:1};
+            },
+            componentWillMount:function () {
+                console.log('2...componentWillMount');
+            },
+            componentDidMount:function () {
+                console.log('3...componentDidMount');
+            },
+            componentWillUpdate:function () {
+                console.log('4...componentWillUpdate');
+            },
+            componentDidUpdate:function () {
+                console.log('4...componentDidUpdate');
+            },
+            handleClick:function (event) {
+                this.setState({count:this.state.count+1})
+            },
+            render:function () {
+                return(
+                    <p>
+                        {this.state.count}<br/>
+                        <button onClick={this.handleClick}>Add</button>
+                    </p>
+                )
+            }
+        })
+
+        ReactDOM.render(
+            <AddCount/>,
+            document.getElementById("demo")
+        );
+    </script>
+<!-- 这个案例在每个生命周期里都加入了输出语句，我们可以打开控制台看代码的执行过程。 -->
+</body>
+</html>

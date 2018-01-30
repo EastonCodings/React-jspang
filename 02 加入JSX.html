@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./react.js"></script>
+    <script src="./react-dom.js"></script>
+    <script src="./browser.min.js"></script>
+</head>
+<body>
+    <div id="reactContainer"></div>
+    <script type="text/babel">
+        // JSX即Javascript XML，它使用XML标记来创建虚拟DOM和声明组件。
+
+        // var HelloComponent = React.createClass({
+        //     render:function() {
+        //         return <h1>Hello World</h1>;
+        //     }
+        // });
+
+        // ReactDOM.render(
+        //     <HelloComponent/>,
+        //     document.getElementById('reactContainer')
+        // )
+
+        // 需要注意的是表达式不支持if…else这样的语句，但是支持三元运算符和二元运算符。
+        
+        var HelloComponent = React.createClass({
+            render:function () {
+                return <h1>Hello {this.props.name?this.props.name:'world'}</h1>
+            }
+        });
+
+        ReactDOM.render(
+            <HelloComponent name="Wilson"/>,
+            document.getElementById('reactContainer')
+        )
+    </script>
+</body>
+</html>

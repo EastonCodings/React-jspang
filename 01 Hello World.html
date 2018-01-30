@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="reactContainer"></div>
+    <script src="./react.js"></script>
+    <script src="./react-dom.js"></script>
+    <script>
+        // 存在开发效率问题，比如JavaScript代码与标签混写在一起、缺乏模板支持等。
+
+        var HelloComponent=React.createClass({
+            render:function(){
+                return React.createElement('h1',null,'Hello world');
+            }
+        });
+
+        ReactDOM.render(
+            React.createElement(HelloComponent,null),
+            document.getElementById('reactContainer')
+        )
+    </script>
+</body>
+</html>
