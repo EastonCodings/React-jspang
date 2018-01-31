@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./react.js"></script>
+    <script src="./react-dom.js"></script>
+    <script src="./browser.min.js"></script>
+</head>
+<!-- 组件的属性是可以接收任何值的，但有时候我们希望对外界父级组件传递进来的属性数据进行限定，
+比如希望name属性不能缺少、onClick属性必须是函数类型等，这对确保组件被正确使用非常有意义。
+为此React引入了propTypes机制。React.PropTypes提供各种验证器（validator）来验证传入数据的有效性。
+当向props传入无效数据时，React会在JavaScript控制台抛出警告。 -->
+<body>
+    <div id = "demo"></div>
+    <script type="text/babel">
+        // var MyTitle = React.createClass({
+        //
+        //     propTypes:{
+        //         title:React.PropTypes.string.isRequired,
+        //     },
+
+        //     render:function(){
+        //         return <h2>{this.props.title}</h2>
+        //     }
+        // })
+        //
+        // // var data = '123';
+        // var data = 123;
+        // ReactDOM.render(
+        //     <MyTitle title = {data}/>,
+        //     document.getElementById('demo')
+        // );
+
+        var MyTitle = React.createClass({
+
+            getDefaultProps:function() {
+                return{
+                    title:'Hello JSPang'
+                }
+            },
+
+            render:function() {
+                return <h2>{this.props.title}</h2>
+            }
+        })
+
+        ReactDOM.render(
+            <MyTitle/>,
+            document.getElementById('demo')
+        );
+    </script>
+</body>
+<!-- 上面的代码，我们创建了一个组件，组件里有一个title属性。
+PropTypes告诉React，这个title属性是必须的，而且它的值必须是字符串。
+而我们在程序中却给它设置为数值。打开浏览器控制台你可以看到报错信息。 -->
+</html>

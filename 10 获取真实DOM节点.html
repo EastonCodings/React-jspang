@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./react.js"></script>
+    <script src="./react-dom.js"></script>
+    <script src="./browser.min.js"></script>
+</head>
+<!-- React中的DOM也是虚拟DOM（virtual DOM），这点跟我们以前讲的Vue非常类似。
+只有当它插入文档以后，才会变成真实的DOM。
+React也是在虚拟DOM发生变化时，进行比对后，只渲染变化的部分，它是React极高性能的主要原因之一。 -->
+<body>
+    <div id = "demo"></div>
+    <script type="text/babel">
+        var MyComponent = React.createClass({
+
+            handleClick:function() {
+                this.refs.myTextInput.focus();
+            },
+            
+            render:function() {
+                return(
+                    <div>
+                        <input type = "text" ref = "myTextInput" />
+                        <input type = "button" value = "Focus the text input" onClick = {this.handleClick}/>
+                    </div>
+                )
+            }
+        });
+
+        ReactDOM.render(
+            <MyComponent/>,
+            document.getElementById('demo')
+        );
+    </script>
+</body>
+<!-- 这个案例很简单，就是有一个文本框，当你点击按钮时，光标定位到文本框里。
+这时就必须获取真实的DOM节点，虚拟DOM是拿不到用户输入的。
+为了做到这一点，文本框必须有一个ref属性，用this.refs.xxx就可以返回真实的DOM节点。
+注意：
+由于this.refs.[refName]属性获取的是真实DOM，所以必须得到虚拟DOM插入文档以后，才能使用这个属性，否则会报错。 -->
+</html>
