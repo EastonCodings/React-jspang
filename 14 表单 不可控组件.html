@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./react.js"></script>
+    <script src="./react-dom.js"></script>
+    <script src="./browser.min.js"></script>
+</head>
+<!-- 
+     在input标签中不把value绑定到state上的就是不可控组件，它的数据不和state对应，
+     所以在开发时会给自己挖很多坑，但是不可控组件并不是不可掌控，
+     就用一节课的时间，我们了解一下不可控组件的小技巧。 
+-->
+<body>
+    <div id="demo"></div>
+    <script type="text/babel">
+        // 我们先来做一个最简单的不可用组件。
+        // var  MyForm = React.createClass({
+        //     render:function(){
+        //         return(
+        //             <div>
+        //                 <input type="text"/>
+        //             </div>
+        //         )
+        //     }
+        // });
+
+        // 组件完成之后给它加上一个onChange事件，发现是可以监控到变化值的。
+        // 如果要获得iput中的value值，需先拿到其DOM节点，然后获取其value值。
+        var  MyForm = React.createClass({
+            handleChange:function(){
+                var inputValue=ReactDOM.findDOMNode(this.refs.jspang).value;
+                console.log(inputValue);
+            },
+            render:function(){
+                return(
+                    <div>
+                        <input type="text" onChange={this.handleChange} ref="jspang"/>
+                    </div>
+                )
+            }
+        });
+
+        ReactDOM.render(<MyForm/>,document.getElementById('demo'))
+        // 当然我们也可以给input加入默认值，但是不是value了，而是defaultValue。 
+        // <input type="text" onChange={this.handleChange} ref="jspang" defaultValue='jspang'/>
+    </script>
+</body>
+</html>
